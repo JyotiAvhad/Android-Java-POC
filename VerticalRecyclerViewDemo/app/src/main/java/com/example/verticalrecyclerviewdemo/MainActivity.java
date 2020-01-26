@@ -60,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
                         writeRecycler(jsonresponse);
 
                     } else {
-                        Log.i("onEmptyResponse", "Returned empty response");//Toast.makeText(getContext(),"Nothing returned",Toast.LENGTH_LONG).show();
+                        Log.i("onEmptyResponse", "Returned empty response");
+                        //Toast.makeText(getContext(),"Nothing returned",Toast.LENGTH_LONG).show();
                     }
                 }
             }
