@@ -8,6 +8,17 @@ public class RecyclerViewModel {
     private String email;
     private String avatar;
 
+    public RecyclerViewModel() {
+    }
+
+    public RecyclerViewModel(int id, String first_name, String last_name, String email, String avatar) {
+        this.id = id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.avatar = avatar;
+    }
+
     public int getId() {
         return id;
     }

@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerViewAdapter recyclerViewAdapter;
     RecyclerView recyclerView;
     Context context;
+    List<RecyclerViewModel> modelRecyclerArrayList = new ArrayList<>();
+    UserDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +37,29 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView=findViewById(R.id.recyclerView);
 
-        fetchRetrofitData();
+        if (null == db){
+            db = new UserDatabase(this);
+            db.getWritableDatabase();
+        }
 
+        if (db.getAllContacts().size() > 0){
+            fetchDataFromDb();
+        } else {
+            fetchRetrofitData();
+        }
+    }
+
+    private void fetchDataFromDb() {
+
+        if (null == db){
+            db = new UserDatabase(this);
+            db.getWritableDatabase();
+        }
+
+        modelRecyclerArrayList = db.getAllContacts();
+        recyclerViewAdapter = new RecyclerViewAdapter(this,modelRecyclerArrayList);
+        recyclerView.setAdapter(recyclerViewAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
     }
 
     private void fetchRetrofitData() {
@@ -64,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("onResponse: ",response.body());
 
                         String data=response.body();
-                        getListData(data);
+                        setListData(data);
                     }
                     else {
 
@@ -84,42 +108,52 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void getListData(String data) {
+    private void setListData(String data) {
 
         try{
             //getting data from response
-            JSONObject object =new JSONObject(data);
+            JSONObject object = new JSONObject(data);
 
-            if (object.optString("status").equals("true")){
+            //if (object.optString("status").equals("true")){
 
-                ArrayList<RecyclerViewModel> modelRecyclerArrayList = new ArrayList<>();
+
                 JSONArray dataArray  = object.getJSONArray("data");
 
                 for (int i = 0; i < dataArray.length(); i++) {
-
-                    RecyclerViewModel modelRecycler = new RecyclerViewModel();
                     JSONObject jsonObject = dataArray.getJSONObject(i);
 
-                    modelRecycler.setId(jsonObject.getInt("id"));
-                    modelRecycler.setFirst_name(jsonObject.getString("firstname"));
-                    modelRecycler.setLast_name(jsonObject.getString("lastname"));
-                    modelRecycler.setEmail(jsonObject.getString("email"));
-                    modelRecycler.setAvatar(jsonObject.getString("imgURL"));
-
+                    RecyclerViewModel modelRecycler = new RecyclerViewModel();
+                    if (jsonObject.has("id"))  modelRecycler.setId(jsonObject.getInt("id"));
+                    if (jsonObject.has("first_name"))  modelRecycler.setFirst_name(jsonObject.getString("first_name"));
+                    if (jsonObject.has("last_name"))  modelRecycler.setLast_name(jsonObject.getString("last_name"));
+                    if (jsonObject.has("email"))  modelRecycler.setEmail(jsonObject.getString("email"));
+                    if (jsonObject.has("avatar"))  modelRecycler.setAvatar(jsonObject.getString("avatar"));
                     modelRecyclerArrayList.add(modelRecycler);
 
+                    insertUserDataToDB(modelRecycler);
                 }
 
                 recyclerViewAdapter = new RecyclerViewAdapter(this,modelRecyclerArrayList);
                 recyclerView.setAdapter(recyclerViewAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
 
-            }else {
+            /*}else {
                 Toast.makeText(MainActivity.this, object.optString("Sorry :-( Something Went Wrong")+"", Toast.LENGTH_SHORT).show();
-            }
+            }*/
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private void insertUserDataToDB(RecyclerViewModel model) {
+        UserDatabase userDatabase = new UserDatabase(this);
+        userDatabase.insertContact(model);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+//        recyclerView.notify();
     }
 }
