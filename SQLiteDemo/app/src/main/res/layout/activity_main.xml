@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/textView_fn"
+        android:layout_marginTop="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="First Name" />
+
+    <TextView
+        android:id="@+id/textView_ln"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="Last Name"/>
+
+    <TextView
+        android:id="@+id/textView_marks"
+        android:layout_marginTop="115dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Marks"/>
+
+    <EditText
+        android:layout_marginLeft="150dp"
+        android:id="@+id/editText_fn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="First Name" />
+
+    <EditText
+        android:layout_marginLeft="150dp"
+        android:id="@+id/editText_ln"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Last Name" />
+
+    <EditText
+        android:layout_marginLeft="150dp"
+        android:id="@+id/editText_marks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Marks" />
+
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="200dp"
+        android:text="Add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    
+
+</RelativeLayout>
