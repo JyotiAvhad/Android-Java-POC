@@ -82,7 +82,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     //update data method
     //same as inset operation only with the difference between insert & update is the method which we use
-    public boolean updateData(String id,String fname,String lname,String marks){
+    public boolean updateData(String id, String fname, String lname, String marks) {
 
         //instance of database class (SQLiteDatabase)
         SQLiteDatabase db = this.getWritableDatabase();
@@ -95,7 +95,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_4, marks);
 
         //update data in table
-        db.update(TABLE_NAME,contentValues,"id = ?",new String[]{id});
+        db.update(TABLE_NAME, contentValues, "id = ?", new String[]{id});
         return true;
+    }
+
+    //delete data method
+    public Integer deleteData(String id) {
+
+        //instance of database class (SQLiteDatabase)
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //delete data in table
+        //return number of deleted rows else return 0 when data is empty
+        return db.delete(TABLE_NAME, "id = ?", new String[]{id});
+
     }
 }
