@@ -10,9 +10,9 @@
 
     <TextView
         android:id="@+id/textView_fn"
-        android:layout_marginTop="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:text="First Name" />
 
     <TextView
@@ -20,52 +20,60 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
-        android:text="Last Name"/>
+        android:text="Last Name" />
 
     <TextView
         android:id="@+id/textView_marks"
-        android:layout_marginTop="115dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Marks"/>
+        android:layout_marginTop="115dp"
+        android:text="Marks" />
 
     <EditText
-        android:layout_marginLeft="150dp"
         android:id="@+id/editText_fn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="First Name" />
+        android:hint="First Name"
+        android:inputType="textPersonName" />
 
     <EditText
-        android:layout_marginLeft="150dp"
         android:id="@+id/editText_ln"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
         android:layout_marginTop="60dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Last Name" />
+        android:hint="Last Name"
+        android:inputType="textPersonName" />
 
     <EditText
-        android:layout_marginLeft="150dp"
         android:id="@+id/editText_marks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
         android:layout_marginTop="100dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Marks" />
+        android:hint="Marks"
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/btn_add"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="200dp"
-        android:text="Add"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="200dp"
+        android:text="Add" />
+
+    <Button
+        android:id="@+id/btn_viewall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="200dp"
+        android:text="View All" />
     
 
 </RelativeLayout>

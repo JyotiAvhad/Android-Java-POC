@@ -2,6 +2,7 @@ package com.example.sqlitedemo;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -46,11 +47,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    //insert method
+    //insert data method
     public boolean insertData(String fname, String lname, String marks) {
 
+        //instance of database class (SQLiteDatabase)
         SQLiteDatabase db = this.getWritableDatabase();
-        //instance of contentvalue class
+        //instance of content value class
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, fname);
         contentValues.put(COL_3, lname);
@@ -63,6 +65,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             return false;
         else
             return true;
+    }
+
+
+    //view all data method
+    public Cursor getAllData() {
+
+        //instance of database class (SQLiteDatabase)
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //Cursor is an interface which provide random read-write access to the result
+        //create an instance of cursor class
+        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME, null);
+        return cursor;
     }
 
 }
