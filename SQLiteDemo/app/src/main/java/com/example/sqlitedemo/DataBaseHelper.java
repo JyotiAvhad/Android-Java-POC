@@ -80,4 +80,22 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    //update data method
+    //same as inset operation only with the difference between insert & update is the method which we use
+    public boolean updateData(String id,String fname,String lname,String marks){
+
+        //instance of database class (SQLiteDatabase)
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //instance of content value class
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_1, id);
+        contentValues.put(COL_2, fname);
+        contentValues.put(COL_3, lname);
+        contentValues.put(COL_4, marks);
+
+        //update data in table
+        db.update(TABLE_NAME,contentValues,"id = ?",new String[]{id});
+        return true;
+    }
 }

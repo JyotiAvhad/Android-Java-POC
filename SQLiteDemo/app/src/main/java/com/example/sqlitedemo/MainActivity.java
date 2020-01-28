@@ -14,8 +14,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     DataBaseHelper myDb;
-    EditText first_name, last_name, marks;
-    Button add_data, view_all_data;
+    EditText id,first_name, last_name, marks;
+    Button add_data, view_all_data,update_data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,16 +25,20 @@ public class MainActivity extends AppCompatActivity {
         //constructor is creating a database & table
         myDb = new DataBaseHelper(this);
 
+        id = findViewById(R.id.editText_id);
         first_name = findViewById(R.id.editText_fn);
         last_name = findViewById(R.id.editText_ln);
         marks = findViewById(R.id.editText_marks);
         add_data = findViewById(R.id.btn_add);
         view_all_data = findViewById(R.id.btn_viewall);
+        update_data = findViewById(R.id.btn_update);
 
         //called when we click on add btn
         addData();
         //called when we click on view all btn
         viewAllData();
+        //called when we click on update btn
+        modifyData();
     }
 
     public void addData() {
@@ -44,11 +48,12 @@ public class MainActivity extends AppCompatActivity {
 
                 //access DataBaseHelper method insertData using its instance
                 //boolean is here to check data is inserted or not in true or false
-                boolean isInserted = myDb.insertData(first_name.getText().toString(),
+                boolean isInserted = myDb.insertData(
+                        first_name.getText().toString(),
                         last_name.getText().toString(),
                         marks.getText().toString());    //user entered data will be getting over here
 
-                if (isInserted = true) {
+                if (isInserted == true) {
                     //data is inserted
                     Toast.makeText(MainActivity.this, "Data Inserted Successfully", Toast.LENGTH_SHORT).show();
                 } else {
@@ -102,5 +107,29 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle(title);    //title
         builder.setMessage(msg);        //msg
         builder.show();     //show
+    }
+
+    public void modifyData() {
+
+        update_data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                boolean isUpdate = myDb.updateData(
+                        id.getText().toString(),
+                        first_name.getText().toString(),
+                        last_name.getText().toString(),
+                        marks.getText().toString());    //user entered data will be updating over here
+
+                if (isUpdate == true) {
+                    //data is inserted
+                    Toast.makeText(MainActivity.this, "Data Updated Successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    //data is not inserted
+                    Toast.makeText(MainActivity.this, "Data not Updated ", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
 }

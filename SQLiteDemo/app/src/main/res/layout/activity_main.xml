@@ -29,6 +29,13 @@
         android:layout_marginTop="115dp"
         android:text="Marks" />
 
+    <TextView
+        android:id="@+id/textView_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:text="ID" />
+
     <EditText
         android:id="@+id/editText_fn"
         android:layout_width="wrap_content"
@@ -59,12 +66,21 @@
         android:hint="Marks"
         android:inputType="textPersonName" />
 
+    <EditText
+        android:id="@+id/editText_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="140dp"
+        android:ems="10"
+        android:hint="Id" />
+
     <Button
         android:id="@+id/btn_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="250dp"
         android:text="Add" />
 
     <Button
@@ -72,8 +88,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="200dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="250dp"
         android:text="View All" />
-    
+
+    <Button
+        android:id="@+id/btn_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="320dp"
+        android:text="Update" />
 
 </RelativeLayout>
