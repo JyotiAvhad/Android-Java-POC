@@ -1,0 +1,2 @@
+rootProject.name='Swipe Screen using Viewpager'
+include ':app'

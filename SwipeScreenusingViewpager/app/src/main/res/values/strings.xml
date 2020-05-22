@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Swipe Screen using Viewpager</string>
+
+    <string name="one">ONE</string>
+    <string name="two">TWO</string>
+    <string name="three">THREE</string>
+
+</resources>
